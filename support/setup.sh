@@ -4,7 +4,7 @@
 
 #oc login -u system:admin
 
-HOST_ROUTE=$1
+HOST_ROUTE=apps.ramalho.openshiftworkshop.com
 
 if [ -z "$HOST_ROUTE" ]
 then
@@ -27,22 +27,19 @@ while read a ;
 		echo ${a//TOBEREPLACED/$HOST_ROUTE} ; 
 	done < all-template.html > all.html ;
 
-oc project openshift
+echo "Create new projects"
+oc new-project sko
+
 oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/application-templates-2.1.fuse-000085/fis-image-streams.json -n openshift
-oc create -f https://raw.githubusercontent.com/strimzi/strimzi/0.1.0/kafka-inmemory/resources/openshift-template.yaml -n openshift
+oc create -f https://raw.githubusercontent.com/strimzi/strimzi/0.1.0/kafka-inmemory/resources/openshift-template.yaml -n sko
 
 oc delete template nodejs-example -n openshift
 oc create -f nodejs.json -n openshift
 
 ############################################################################################
 
-#oc login -u developer
-
-echo "Create new projects"
-oc new-project sko
-
 echo "Start up AMQ Streaming"
-oc new-app strimzi
+oc new-app strimzi -n sko
 
 
 #DATABSE
