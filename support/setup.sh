@@ -4,7 +4,7 @@
 
 #oc login -u system:admin
 
-HOST_ROUTE=apps.ramalho.openshiftworkshop.com
+HOST_ROUTE=apps.paas.dc1.rhbrlab.com
 
 if [ -z "$HOST_ROUTE" ]
 then

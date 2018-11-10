@@ -1,4 +1,7 @@
-= Seat Reservation - Event Ticket Demo
+= Seat Reservation - Event Sourcing Demo
+
+https://martinfowler.com/eaaDev/EventSourcing.html
+
 
 This is a demo application about a seat registration. 
 The objective of this demo is demonstrate how AMQ Streams (Kafka) could be used as an event stream.
